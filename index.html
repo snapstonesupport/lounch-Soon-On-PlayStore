@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SnapStone: Reels, stories, chat and calls in one app</title>
+<meta name="description" content="SnapStone is a social app for sharing reels and stories, adding filters, chatting and calling your friends. Download the free Android app.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="SnapStone: Reels, stories, chat and calls in one app">
+<meta property="og:description" content="Share reels and stories, add filters, chat and call your friends. Free Android app.">
+<meta property="og:image" content="logo.png">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #ffffff;
+  --wash: #f6f3ff;
+  --ink: #17142b;
+  --mute: #5d5977;
+  --line: #e6e2f3;
+  --violet: #6a3ce0;
+  --blue: #2f6bed;
+  --orange: #ff7a1a;
+  --rose: #e11d48;
+  --green: #6fc23a;
+  --head: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; border-radius: 8px; }
+.wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, .88);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--head); font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+.brand img { width: 38px; height: 38px; object-fit: contain; mix-blend-mode: multiply; }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a { text-decoration: none; font-weight: 500; color: var(--mute); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.btn-s { color: #fff; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 0 30px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(100deg, var(--violet), var(--rose) 60%, var(--orange));
+  box-shadow: 0 14px 34px -10px rgba(106, 60, 224, .6);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 20px 38px -10px rgba(106, 60, 224, .65); }
+.btn:active { transform: translateY(0); }
+.btn svg { width: 24px; height: 24px; fill: currentColor; flex: none; }
+.btn-s { min-height: 42px; padding: 0 20px; font-size: 15px; gap: 8px; box-shadow: none; }
+.btn-s svg { width: 18px; height: 18px; }
+
+.hero { background: var(--wash); overflow: hidden; }
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 48px;
+  padding-block: 72px 80px;
+}
+h1 {
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 70px);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  margin-bottom: 22px;
+  text-wrap: balance;
+}
+.lead { font-size: 20px; color: var(--mute); max-width: 30em; margin-bottom: 34px; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 22px; }
+.cta small { color: var(--mute); font-size: 14px; line-height: 1.4; }
+.cta small b { display: block; color: var(--ink); font-size: 15px; font-weight: 600; }
+#note { display: none; margin-top: 18px; padding: 12px 16px; border-radius: 14px; background: #fff; border: 1px solid var(--line); color: var(--mute); font-size: 15px; max-width: 30em; }
+
+.stage { position: relative; display: grid; place-items: center; min-height: 560px; }
+.stage::before {
+  content: "";
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(47, 107, 237, .28), rgba(106, 60, 224, .2) 45%, rgba(255, 122, 26, .22) 80%);
+  filter: blur(8px);
+}
+.phone {
+  position: relative;
+  width: 286px;
+  height: 580px;
+  border-radius: 44px;
+  padding: 10px;
+  background: #15122a;
+  box-shadow: 0 50px 80px -30px rgba(23, 20, 43, .55), inset 0 0 0 2px #2c2850;
+  animation: rise .9s cubic-bezier(.2, .8, .2, 1) both;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(36px) rotate(2deg); } to { opacity: 1; transform: none; } }
+.screen {
+  position: relative;
+  height: 100%;
+  border-radius: 34px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 18%, #ffd37a 0 7%, transparent 8%),
+    linear-gradient(180deg, #4aa3f0 0%, #8fd0f7 38%, #f6c28b 62%, #2b7f98 63%, #12475a 100%);
+  color: #fff;
+}
+.screen::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(0, 0, 0, .72)); }
+.roof { position: absolute; left: -10%; top: 30%; width: 72%; height: 14%; background: #c9553a; transform: skewY(-9deg); border-radius: 6px; }
+.wall { position: absolute; left: -4%; top: 40%; width: 60%; height: 22%; background: #f1d6a4; }
+.palm { position: absolute; right: 10%; top: 12%; width: 6px; height: 120px; background: #6b4a2b; border-radius: 4px; transform: rotate(6deg); }
+.palm::before, .palm::after { content: ""; position: absolute; top: -10px; left: -34px; width: 74px; height: 26px; border-radius: 50%; background: #2e8b4a; }
+.palm::after { transform: rotate(-35deg); background: #3aa55a; }
+.island { position: absolute; top: 10px; left: 50%; width: 78px; height: 22px; margin-left: -39px; background: #15122a; border-radius: 20px; z-index: 4; }
+.rtop { position: absolute; z-index: 3; top: 44px; left: 18px; font-family: var(--head); font-weight: 800; font-size: 22px; line-height: 1.05; text-shadow: 0 2px 10px rgba(0, 0, 0, .45); }
+.rtop span { color: #ffd23f; }
+.rail { position: absolute; z-index: 3; right: 12px; bottom: 96px; display: grid; gap: 16px; }
+.rail svg { width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .5)); }
+.rbot { position: absolute; z-index: 3; left: 16px; right: 56px; bottom: 74px; font-size: 13px; line-height: 1.35; text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
+.ru { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 7px; }
+.ru i { width: 28px; height: 28px; border-radius: 50%; background: conic-gradient(var(--blue), var(--violet), var(--rose), var(--orange), var(--green), var(--blue)); border: 2px solid #fff; }
+.rbot em { font-style: normal; font-weight: 700; opacity: .8; }
+.bn { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: space-around; background: rgba(15, 12, 32, .82); }
+.bn svg { width: 24px; height: 24px; fill: none; stroke: #c9c4e6; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.bn .on svg { stroke: var(--rose); }
+.bn .plus { width: 52px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #ffb02e, var(--orange) 55%, #ff5a36); }
+.bn .plus svg { stroke: #fff; stroke-width: 2.6; }
+
+.tag {
+  position: absolute;
+  z-index: 5;
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 16px 34px -14px rgba(23, 20, 43, .4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tag i { width: 10px; height: 10px; border-radius: 50%; }
+.tag.a { left: 0; top: 130px; }
+.tag.a i { background: var(--green); }
+.tag.b { right: 0; bottom: 120px; }
+.tag.b i { background: var(--orange); }
+
+section { padding-block: 92px; }
+h2 {
+  font-family: var(--head);
+  font-weight: 800;
+  font-size: clamp(32px, 4.4vw, 50px);
+  line-height: 1.06;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+.split { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
+.split > div:first-child { position: sticky; top: 110px; }
+.split p.sub { margin-top: 16px; color: var(--mute); max-width: 24em; }
+.rows { border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: 54px 1fr; gap: 22px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.row .ic { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; }
+.row .ic svg { width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.row h3 { font-family: var(--head); font-weight: 800; font-size: 23px; letter-spacing: -.02em; margin-bottom: 4px; }
+.row p { color: var(--mute); max-width: 36em; }
+.c1 { background: linear-gradient(135deg, var(--rose), var(--orange)); }
+.c2 { background: linear-gradient(135deg, var(--violet), var(--blue)); }
+.c3 { background: linear-gradient(135deg, var(--blue), #19b6c9); }
+.c4 { background: linear-gradient(135deg, var(--green), #2fa86a); }
+.c5 { background: linear-gradient(135deg, var(--orange), #f0b429); }
+.c6 { background: linear-gradient(135deg, var(--violet), var(--rose)); }
+
+.install { background: var(--ink); color: #fff; }
+.install h2 { margin-bottom: 14px; }
+.install .sub { color: #b9b4d8; max-width: 34em; margin-bottom: 44px; }
+.steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: s; border-top: 1px solid #3a3562; }
+.steps li { counter-increment: s; padding: 26px 24px 8px 0; position: relative; }
+.steps li::before {
+  content: counter(s);
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  font-family: var(--head);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--violet), var(--orange));
+}
+.steps h3 { font-family: var(--head); font-size: 19px; font-weight: 800; margin-bottom: 4px; }
+.steps p { color: #b9b4d8; font-size: 15px; line-height: 1.5; }
+.install .btn { margin-top: 48px; }
+
+.final { text-align: center; }
+.final img { width: 96px; height: 96px; margin: 0 auto 22px; object-fit: contain; mix-blend-mode: multiply; }
+.final p { color: var(--mute); margin: 14px auto 32px; max-width: 28em; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 calc(28px + env(safe-area-inset-bottom, 0px)); color: var(--mute); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 48px 56px; text-align: left; }
+  .stage { min-height: 520px; }
+  .split { grid-template-columns: 1fr; gap: 34px; }
+  .split > div:first-child { position: static; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  section { padding-block: 64px; }
+  .nav-links a:not(.btn-s) { display: none; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .lead { font-size: 18px; }
+  .btn { width: 100%; }
+  .btn-s { width: auto; }
+  .steps { grid-template-columns: 1fr; }
+  .tag.a { left: -6px; top: 70px; }
+  .tag.b { right: -6px; bottom: 80px; }
+  .row { grid-template-columns: 46px 1fr; gap: 16px; }
+  .row .ic { width: 46px; height: 46px; border-radius: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .phone { animation: none; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.png" alt="" width="38" height="38">SnapStone</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#install">How to install</a>
+      <a class="btn btn-s" href="SnapStone.apk" download="SnapStone.apk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.2l-4-4-1.4 1.4L12 17l5.4-5.4-1.4-1.4-4 4V3zM5 19v2h14v-2z"/></svg>
+        Download
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Your friends, your reels, your moments. All in SnapStone.</h1>
+        <p class="lead">Post reels and stories, try face filters, chat and call your friends. Free for Android.</p>
+        <div class="cta">
+          <a class="btn" id="dl" href="SnapStone.apk" download="SnapStone.apk">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.5l1.7-3a.4.4 0 0 0-.7-.4l-1.7 3A10.3 10.3 0 0 0 12 8.2c-1.7 0-3.3.4-4.9 1l-1.7-3a.4.4 0 0 0-.7.4l1.7 3A9.6 9.6 0 0 0 1.9 17h20.2a9.6 9.6 0 0 0-4.5-7.5zM7.6 14.6a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8zm8.8 0a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8zM3 18.2V19a2 2 0 0 0 2 2h1v-2.8zm15 0V21h1a2 2 0 0 0 2-2v-.8z"/></svg>
+            Download for Android
+          </a>
+          <small><b>Free APK</b>Works on Android phones</small>
+        </div>
+        <p id="note" role="status">SnapStone is an Android app. Open this page on your Android phone to install it.</p>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <div class="tag a"><i></i>Priya is calling you</div>
+        <div class="tag b"><i></i>Rohan liked your reel</div>
+        <div class="phone">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="roof"></div>
+            <div class="wall"></div>
+            <div class="palm"></div>
+            <div class="rtop">Funniest pool<br><span>moments of the week</span></div>
+            <div class="rail">
+              <svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.2-9.2C1.6 8 3.6 5 6.7 5c2 0 3.5 1.1 5.3 3 1.8-1.9 3.3-3 5.3-3 3.1 0 5.1 3 3.9 6.3-1.7 4.6-9.2 9.2-9.2 9.2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 20.5l1.5-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg>
+            </div>
+            <div class="rbot">
+              <div class="ru"><i></i>aarav.clicks</div>
+              Funny video <em>#trending #viral</em> … <em>see more</em>
+            </div>
+            <div class="bn">
+              <span><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></svg></span>
+              <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+              <span class="on"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5"/><path d="M3.2 8.6h17.6M10 12.5v4l3.6-2z"/></svg></span>
+              <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap split">
+      <div>
+        <h2>Everything you do with friends, in one place</h2>
+        <p class="sub">No switching between apps. Post, talk and keep up with people from a single feed.</p>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <div class="ic c1"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5"/><path d="M3.2 8.6h17.6M10 12.5v4l3.6-2z"/></svg></div>
+          <div><h3>Reels that play instantly</h3><p>Swipe through short videos, double tap to like, and tap the video to pause. Long captions stay short until you tap see more.</p></div>
+        </div>
+        <div class="row">
+          <div class="ic c2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><h3>Stories for the moment</h3><p>Share what you are doing right now. Friends can like your story or reply to it in a message.</p></div>
+        </div>
+        <div class="row">
+          <div class="ic c5"><svg viewBox="0 0 24 24"><path d="M12 3l2.1 5.4L20 9l-4.4 3.7L17 18.5 12 15.5 7 18.5l1.4-5.8L4 9l5.9-.6z"/></svg></div>
+          <div><h3>Face and colour filters</h3><p>Pick a look before you post. Over 35 colour filters like Clarendon, Juno and Lark work live on the camera.</p></div>
+        </div>
+        <div class="row">
+          <div class="ic c3"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 20.5l1.5-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+          <div><h3>Chat, voice and video calls</h3><p>Send messages, photos and videos, or call a friend. Calls ring on your phone even when the app is closed.</p></div>
+        </div>
+        <div class="row">
+          <div class="ic c4"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+          <div><h3>Private and verified</h3><p>Keep your account private and approve who follows you. Sign up with a code sent to your phone number, or continue with Google.</p></div>
+        </div>
+        <div class="row">
+          <div class="ic c6"><svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></svg></div>
+          <div><h3>Alerts that matter</h3><p>Get notified about new messages, follows, likes, comments and replies. Available in English, Hindi and Bengali.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="install" id="install">
+    <div class="wrap">
+      <h2>Install SnapStone in four steps</h2>
+      <p class="sub">SnapStone is installed from an APK file. Android will ask for one permission the first time.</p>
+      <ol class="steps">
+        <li><h3>Download the APK</h3><p>Tap the download button on this page and wait for the file to finish.</p></li>
+        <li><h3>Open the file</h3><p>Open SnapStone.apk from your notifications or the Downloads folder.</p></li>
+        <li><h3>Allow the install</h3><p>If Android asks, turn on Allow from this source, then go back.</p></li>
+        <li><h3>Tap Install and sign up</h3><p>Open SnapStone, verify your phone number and start posting.</p></li>
+      </ol>
+      <a class="btn" href="SnapStone.apk" download="SnapStone.apk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.2l-4-4-1.4 1.4L12 17l5.4-5.4-1.4-1.4-4 4V3zM5 19v2h14v-2z"/></svg>
+        Download SnapStone.apk
+      </a>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <img src="logo.png" alt="SnapStone logo" width="96" height="96">
+      <h2>Ready to join SnapStone?</h2>
+      <p>Create your account in a minute and find your friends.</p>
+      <a class="btn" href="SnapStone.apk" download="SnapStone.apk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.2l-4-4-1.4 1.4L12 17l5.4-5.4-1.4-1.4-4 4V3zM5 19v2h14v-2z"/></svg>
+        Download for Android
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> SnapStone. All rights reserved.</span>
+    <span>Only download SnapStone.apk from this page.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var y = document.getElementById("yr");
+  if (y) y.textContent = new Date().getFullYear();
+  var ua = navigator.userAgent || "";
+  if (!/Android/i.test(ua)) {
+    var n = document.getElementById("note");
+    if (n) n.style.display = "block";
+  }
+})();
+</script>
+</body>
+</html>
