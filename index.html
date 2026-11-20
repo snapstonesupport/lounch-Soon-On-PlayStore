@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SnapStone: Reels, stories, chat and calls in one app</title>
 <meta name="description" content="SnapStone is a social app for sharing reels and stories, adding filters, chatting and calling your friends. Download the free Android app.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#8B5CF6">
 <meta property="og:title" content="SnapStone: Reels, stories, chat and calls in one app">
 <meta property="og:description" content="Share reels and stories, add filters, chat and call your friends. Free Android app.">
 <meta property="og:image" content="logo.png">
@@ -16,15 +16,15 @@
 <style>
 :root {
   --paper: #ffffff;
-  --wash: #f6f3ff;
-  --ink: #17142b;
-  --mute: #5d5977;
-  --line: #e6e2f3;
-  --violet: #6a3ce0;
-  --blue: #2f6bed;
-  --orange: #ff7a1a;
-  --rose: #e11d48;
-  --green: #6fc23a;
+  --wash: #F4F5FA;
+  --ink: #14151F;
+  --mute: #6C7089;
+  --line: #E4E6F0;
+  --violet: #8B5CF6;
+  --blue: #5B4DFF;
+  --orange: #F472B6;
+  --rose: #F472B6;
+  --green: #6D28D9;
   --head: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -78,11 +78,11 @@ a { color: inherit; }
   letter-spacing: -.01em;
   text-decoration: none;
   color: #fff;
-  background: linear-gradient(100deg, var(--violet), var(--rose) 60%, var(--orange));
-  box-shadow: 0 14px 34px -10px rgba(106, 60, 224, .6);
+  background: linear-gradient(135deg, #8B5CF6, #F472B6);
+  box-shadow: 0 14px 34px -10px rgba(139, 92, 246, .55);
   transition: transform .18s ease, box-shadow .18s ease;
 }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 20px 38px -10px rgba(106, 60, 224, .65); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 20px 38px -10px rgba(139, 92, 246, .6); }
 .btn:active { transform: translateY(0); }
 .btn svg { width: 24px; height: 24px; fill: currentColor; flex: none; }
 .btn-s { min-height: 42px; padding: 0 20px; font-size: 15px; gap: 8px; box-shadow: none; }
@@ -118,7 +118,7 @@ h1 {
   width: 440px;
   height: 440px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(47, 107, 237, .28), rgba(106, 60, 224, .2) 45%, rgba(255, 122, 26, .22) 80%);
+  background: radial-gradient(circle at 30% 30%, rgba(91, 77, 255, .26), rgba(139, 92, 246, .22) 45%, rgba(244, 114, 182, .26) 80%);
   filter: blur(8px);
 }
 .phone {
@@ -127,8 +127,8 @@ h1 {
   height: 580px;
   border-radius: 44px;
   padding: 10px;
-  background: #15122a;
-  box-shadow: 0 50px 80px -30px rgba(23, 20, 43, .55), inset 0 0 0 2px #2c2850;
+  background: #0E0F16;
+  box-shadow: 0 50px 80px -30px rgba(91, 77, 255, .45), inset 0 0 0 2px #2A2D3E;
   animation: rise .9s cubic-bezier(.2, .8, .2, 1) both;
 }
 @keyframes rise { from { opacity: 0; transform: translateY(36px) rotate(2deg); } to { opacity: 1; transform: none; } }
@@ -139,7 +139,7 @@ h1 {
   overflow: hidden;
   background:
     radial-gradient(circle at 78% 18%, #ffd37a 0 7%, transparent 8%),
-    linear-gradient(180deg, #4aa3f0 0%, #8fd0f7 38%, #f6c28b 62%, #2b7f98 63%, #12475a 100%);
+    linear-gradient(180deg, #5B4DFF 0%, #8B5CF6 38%, #F9A8D4 62%, #6D28D9 63%, #2a1a5e 100%);
   color: #fff;
 }
 .screen::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(0, 0, 0, .72)); }
@@ -148,19 +148,19 @@ h1 {
 .palm { position: absolute; right: 10%; top: 12%; width: 6px; height: 120px; background: #6b4a2b; border-radius: 4px; transform: rotate(6deg); }
 .palm::before, .palm::after { content: ""; position: absolute; top: -10px; left: -34px; width: 74px; height: 26px; border-radius: 50%; background: #2e8b4a; }
 .palm::after { transform: rotate(-35deg); background: #3aa55a; }
-.island { position: absolute; top: 10px; left: 50%; width: 78px; height: 22px; margin-left: -39px; background: #15122a; border-radius: 20px; z-index: 4; }
+.island { position: absolute; top: 10px; left: 50%; width: 78px; height: 22px; margin-left: -39px; background: #0E0F16; border-radius: 20px; z-index: 4; }
 .rtop { position: absolute; z-index: 3; top: 44px; left: 18px; font-family: var(--head); font-weight: 800; font-size: 22px; line-height: 1.05; text-shadow: 0 2px 10px rgba(0, 0, 0, .45); }
-.rtop span { color: #ffd23f; }
+.rtop span { color: #FBCFE8; }
 .rail { position: absolute; z-index: 3; right: 12px; bottom: 96px; display: grid; gap: 16px; }
 .rail svg { width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .5)); }
 .rbot { position: absolute; z-index: 3; left: 16px; right: 56px; bottom: 74px; font-size: 13px; line-height: 1.35; text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
 .ru { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 7px; }
-.ru i { width: 28px; height: 28px; border-radius: 50%; background: conic-gradient(var(--blue), var(--violet), var(--rose), var(--orange), var(--green), var(--blue)); border: 2px solid #fff; }
+.ru i { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #8B5CF6, #F472B6); border: 2px solid #fff; }
 .rbot em { font-style: normal; font-weight: 700; opacity: .8; }
-.bn { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: space-around; background: rgba(15, 12, 32, .82); }
-.bn svg { width: 24px; height: 24px; fill: none; stroke: #c9c4e6; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.bn { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: space-around; background: rgba(14, 15, 22, .86); }
+.bn svg { width: 24px; height: 24px; fill: none; stroke: #9EA2BC; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .bn .on svg { stroke: var(--rose); }
-.bn .plus { width: 52px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #ffb02e, var(--orange) 55%, #ff5a36); }
+.bn .plus { width: 52px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, #8B5CF6, #F472B6); }
 .bn .plus svg { stroke: #fff; stroke-width: 2.6; }
 
 .tag {
@@ -171,16 +171,16 @@ h1 {
   background: #fff;
   font-weight: 600;
   font-size: 14px;
-  box-shadow: 0 16px 34px -14px rgba(23, 20, 43, .4);
+  box-shadow: 0 16px 34px -14px rgba(91, 77, 255, .4);
   display: flex;
   align-items: center;
   gap: 10px;
 }
 .tag i { width: 10px; height: 10px; border-radius: 50%; }
 .tag.a { left: 0; top: 130px; }
-.tag.a i { background: var(--green); }
+.tag.a i { background: #8B5CF6; }
 .tag.b { right: 0; bottom: 120px; }
-.tag.b i { background: var(--orange); }
+.tag.b i { background: #F472B6; }
 
 section { padding-block: 92px; }
 h2 {
@@ -200,17 +200,17 @@ h2 {
 .row .ic svg { width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .row h3 { font-family: var(--head); font-weight: 800; font-size: 23px; letter-spacing: -.02em; margin-bottom: 4px; }
 .row p { color: var(--mute); max-width: 36em; }
-.c1 { background: linear-gradient(135deg, var(--rose), var(--orange)); }
-.c2 { background: linear-gradient(135deg, var(--violet), var(--blue)); }
-.c3 { background: linear-gradient(135deg, var(--blue), #19b6c9); }
-.c4 { background: linear-gradient(135deg, var(--green), #2fa86a); }
-.c5 { background: linear-gradient(135deg, var(--orange), #f0b429); }
-.c6 { background: linear-gradient(135deg, var(--violet), var(--rose)); }
+.c1 { background: linear-gradient(135deg, #F472B6, #8B5CF6); }
+.c2 { background: linear-gradient(135deg, #8B5CF6, #5B4DFF); }
+.c3 { background: linear-gradient(135deg, #5B4DFF, #8B5CF6); }
+.c4 { background: linear-gradient(135deg, #6D28D9, #8B5CF6); }
+.c5 { background: linear-gradient(135deg, #F472B6, #6D28D9); }
+.c6 { background: linear-gradient(135deg, #8B5CF6, #F472B6); }
 
-.install { background: var(--ink); color: #fff; }
+.install { background: #0E0F16; color: #fff; }
 .install h2 { margin-bottom: 14px; }
-.install .sub { color: #b9b4d8; max-width: 34em; margin-bottom: 44px; }
-.steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: s; border-top: 1px solid #3a3562; }
+.install .sub { color: #9EA2BC; max-width: 34em; margin-bottom: 44px; }
+.steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: s; border-top: 1px solid #2A2D3E; }
 .steps li { counter-increment: s; padding: 26px 24px 8px 0; position: relative; }
 .steps li::before {
   content: counter(s);
@@ -222,10 +222,10 @@ h2 {
   border-radius: 50%;
   font-family: var(--head);
   font-weight: 800;
-  background: linear-gradient(135deg, var(--violet), var(--orange));
+  background: linear-gradient(135deg, #8B5CF6, #F472B6);
 }
 .steps h3 { font-family: var(--head); font-size: 19px; font-weight: 800; margin-bottom: 4px; }
-.steps p { color: #b9b4d8; font-size: 15px; line-height: 1.5; }
+.steps p { color: #9EA2BC; font-size: 15px; line-height: 1.5; }
 .install .btn { margin-top: 48px; }
 
 .final { text-align: center; }
@@ -270,7 +270,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
     <nav class="nav-links" aria-label="Main">
       <a href="#features">Features</a>
       <a href="#install">How to install</a>
-      <a class="btn btn-s" href="SnapStone.apk" download="SnapStone.apk">
+      <a class="btn btn-s" href="SnapStone-release.apk" download="SnapStone-release.apk">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.2l-4-4-1.4 1.4L12 17l5.4-5.4-1.4-1.4-4 4V3zM5 19v2h14v-2z"/></svg>
         Download
       </a>
@@ -285,7 +285,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
         <h1>Your friends, your reels, your moments. All in SnapStone.</h1>
         <p class="lead">Post reels and stories, try face filters, chat and call your friends. Free for Android.</p>
         <div class="cta">
-          <a class="btn" id="dl" href="SnapStone.apk" download="SnapStone.apk">
+          <a class="btn" id="dl" href="SnapStone-release.apk" download="SnapStone-release.apk">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.5l1.7-3a.4.4 0 0 0-.7-.4l-1.7 3A10.3 10.3 0 0 0 12 8.2c-1.7 0-3.3.4-4.9 1l-1.7-3a.4.4 0 0 0-.7.4l1.7 3A9.6 9.6 0 0 0 1.9 17h20.2a9.6 9.6 0 0 0-4.5-7.5zM7.6 14.6a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8zm8.8 0a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8zM3 18.2V19a2 2 0 0 0 2 2h1v-2.8zm15 0V21h1a2 2 0 0 0 2-2v-.8z"/></svg>
             Download for Android
           </a>
@@ -368,13 +368,13 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
       <p class="sub">SnapStone is installed from an APK file. Android will ask for one permission the first time.</p>
       <ol class="steps">
         <li><h3>Download the APK</h3><p>Tap the download button on this page and wait for the file to finish.</p></li>
-        <li><h3>Open the file</h3><p>Open SnapStone.apk from your notifications or the Downloads folder.</p></li>
+        <li><h3>Open the file</h3><p>Open SnapStone-release.apk from your notifications or the Downloads folder.</p></li>
         <li><h3>Allow the install</h3><p>If Android asks, turn on Allow from this source, then go back.</p></li>
         <li><h3>Tap Install and sign up</h3><p>Open SnapStone, verify your phone number and start posting.</p></li>
       </ol>
-      <a class="btn" href="SnapStone.apk" download="SnapStone.apk">
+      <a class="btn" href="SnapStone-release.apk" download="SnapStone-release.apk">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.2l-4-4-1.4 1.4L12 17l5.4-5.4-1.4-1.4-4 4V3zM5 19v2h14v-2z"/></svg>
-        Download SnapStone.apk
+        Download SnapStone-release.apk
       </a>
     </div>
   </section>
@@ -384,7 +384,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
       <img src="logo.png" alt="SnapStone logo" width="96" height="96">
       <h2>Ready to join SnapStone?</h2>
       <p>Create your account in a minute and find your friends.</p>
-      <a class="btn" href="SnapStone.apk" download="SnapStone.apk">
+      <a class="btn" href="SnapStone-release.apk" download="SnapStone-release.apk">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11.2l-4-4-1.4 1.4L12 17l5.4-5.4-1.4-1.4-4 4V3zM5 19v2h14v-2z"/></svg>
         Download for Android
       </a>
@@ -395,7 +395,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 <footer>
   <div class="wrap">
     <span>&copy; <span id="yr">2026</span> SnapStone. All rights reserved.</span>
-    <span>Only download SnapStone.apk from this page.</span>
+    <span>Only download SnapStone-release.apk from this page.</span>
   </div>
 </footer>
 
